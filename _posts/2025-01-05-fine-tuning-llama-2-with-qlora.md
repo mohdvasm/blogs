@@ -6,7 +6,7 @@ tags: [generative ai]     # TAG names should always be lowercase
 author: mohdvasm
 ---
 
-Here's a breakdown of the parameters in your fine-tuning script for **LLaMA 2** using **QLoRA** in **Colab**:
+# Want to learn how to fine-tune Llama 2 efficiently, then you should be familiar with the following parameters.
 
 * * *
 
