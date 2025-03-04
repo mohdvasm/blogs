@@ -1,12 +1,11 @@
 ---
-title: Fine Tuning
+title: Fine Tuning Llama 2 with QLoRA
 date: 2025-03-05 00:30:00 +0530
 categories: [Generative AI, Fine-Tuning]
 tags: [generative ai]     # TAG names should always be lowercase
 author: mohdvasm
 ---
 
-## Response:
 Here's a breakdown of the parameters in your fine-tuning script for **LLaMA 2** using **QLoRA** in **Colab**:
 
 * * *
@@ -141,9 +140,7 @@ Your setup: ✅ Uses **QLoRA** for efficient fine-tuning.
 ✅ Uses **gradient checkpointing** to save memory.  
 ✅ Uses **Paged AdamW optimizer** with a **cosine learning rate schedule**.
 
-Let me know if you need help adjusting these settings! 🚀
 
-## Response:
 Let's break these down with hands-on, simple calculations for better intuition.
 
 * * *
@@ -272,9 +269,7 @@ LoRA applies dropout to its low-rank updates to prevent overfitting.
 | `lora_alpha = 16` | Scaling factor for LoRA updates | Higher `alpha` → LoRA updates affect model more |
 | `lora_dropout = 0.1` | Dropout rate for LoRA layers | Higher dropout → Prevents overfitting but slows adaptation |
 
-Would you like to tweak these values and see their effect on training? 🚀
 
-## Response:
 Great question! The **1000×1000** example is a **weight matrix** in a neural network, representing model parameters. Let's break it down further.
 
 * * *
@@ -345,9 +340,7 @@ Thus:
 
 * * *
 
-### **Would You Like to See LoRA Applied to a Specific Layer in LLaMA-2?** 🚀
 
-## Response:
 You're on the right track, but there's a slight misunderstanding. Let's clarify how **LoRA modifies weight matrices** in large models like LLaMA-2.
 
 * * *
@@ -433,9 +426,7 @@ Instead, LoRA is **applied to individual weight matrices** inside the model, not
 *   **LoRA is applied per matrix**, reducing trainable parameters.
 *   ** $r$  (LoRA rank) is much smaller than full model size** to save memory.
 
-Would you like to go deeper into how LoRA is applied to attention layers in LLaMA-2? 🚀
 
-## Response:
 ### **How LoRA is Applied to Attention Layers in LLaMA-2**
 
 LoRA is mainly applied to the **query, key, and value projection matrices** inside the **self-attention mechanism** of transformer models like LLaMA-2.
@@ -554,12 +545,10 @@ $$
 
 ### **Next Steps**
 
-Would you like:
 
 1.  A **hands-on code example** applying LoRA to a LLaMA-2 model? 🔥
 2.  A **deeper dive into LoRA hyperparameters** like `lora_alpha` and `lora_dropout`? 🎯
 
-## Response:
 ### **4-bit Quantization in LLaMA-2 Fine-Tuning**
 
 Quantization is crucial for reducing memory usage when fine-tuning large models like LLaMA-2-7B. **bitsandbytes** (bnb) enables efficient **4-bit quantization**, significantly reducing GPU requirements.
@@ -683,9 +672,7 @@ use_nested_quant = False  # Avoid extra quantization unless needed
 
 * * *
 
-### **Would you like a hands-on example running 4-bit LoRA fine-tuning on Colab?** 😊
 
-## Response:
 ### **How NF4 (Normalized Float 4) Represents Values**
 
 NF4 (**Normalized Float 4**) is a **specialized 4-bit floating-point quantization format** designed to **retain more useful information** compared to standard FP4 (Float 4). It does this by using a **non-uniform distribution** of quantized values.
@@ -787,9 +774,7 @@ Imagine compressing these values into 4-bit precision:
 
 * * *
 
-### **Would you like a Python example of how NF4 quantization works?** 🚀
 
-## Response:
 ### **How NF4 Quantization is Calculated?**
 
 NF4 (Normalized Float 4) **maps full-precision values** (e.g., FP16 or FP32) to **one of 16 predefined NF4 values**. Unlike standard 4-bit floating point, which distributes values linearly, NF4 assigns more precision to small magnitudes.
@@ -916,9 +901,7 @@ This **restores** the weights using the NF4 representation.
 ✅ **Dequantization**: Convert back using stored **4-bit codes**.  
 ✅ **NF4 reduces memory by 4x** while keeping accuracy high for LLMs.
 
-Would you like an example on how NF4 compares to FP4 in a real model? 🚀
 
-## Response:
 ### **Understanding `per_device_train_batch_size` & `per_device_eval_batch_size`**
 
 These parameters define how many samples (or examples) are processed **per GPU** during training and evaluation.
@@ -1022,9 +1005,7 @@ $$
 
 👉 The model updates **after seeing 16 examples** instead of 8.
 
-Would you like a visualization of how this works? 🚀
 
-## Response:
 ### **Optimization and Efficiency in Fine-Tuning LLaMA 2**
 
 When fine-tuning a large language model, optimizing memory and training efficiency is **critical**. Let's break down these parameters with detailed explanations and examples.
@@ -1246,9 +1227,7 @@ where:
 *   **Learning rate scheduling (`cosine`)** helps smooth training.
 *   **Paged AdamW optimizer** is efficient for large-scale fine-tuning.
 
-Would you like me to provide example **PyTorch/TensorFlow** code for these? 🚀
 
-## Response:
 ### **Gradient Norm and Gradient Clipping (max\_grad\_norm)**
 
 Gradient norms play a **critical** role in stabilizing the training of deep learning models, especially **large-scale models like LLaMA 2**. Let’s go deep into what **gradient norm** is, why it matters, and how **gradient clipping** (via `max_grad_norm`) helps.
@@ -1435,9 +1414,7 @@ training_args = TrainingArguments(
 4.  **Common values:** `1.0 - 2.0` is ideal for **LLaMA 2** fine-tuning.
 5.  **PyTorch & Hugging Face** provide built-in methods to clip gradients easily.
 
-Would you like me to generate a **graph visualization** of gradient norms before and after clipping? 🚀
 
-## Response:
 ### **Training Steps and Logging – Detailed Explanation** 🚀
 
 When fine-tuning large models like **LLaMA 2**, understanding **training steps and logging settings** helps optimize training efficiency and monitoring. Let’s break each setting down with **examples and intuition**.
@@ -1624,9 +1601,7 @@ training_args = TrainingArguments(
 | **`save_steps`** | Saves model checkpoints every N steps | Use **500-2000** for large models |
 | **`logging_steps`** | Logs progress every N steps | Use **10-50** for quick monitoring |
 
-Would you like a **visual graph** of warmup or logging behavior? 🚀
 
-## Response:
 If your training **crashes** and you want to **resume from the last saved checkpoint**, follow these steps:
 
 * * *
@@ -1737,9 +1712,7 @@ training_args = TrainingArguments(
 | Prevent disk overflow | `save_total_limit=3` |
 | Ensure settings are consistent | Keep `batch_size`, `lr`, etc. the same |
 
-Would you like a script that **automatically finds the latest checkpoint** and resumes training? 🚀
 
-## Response:
 Let's go through these parameters in **detail** with examples and intuition:
 
 * * *
@@ -1849,5 +1822,4 @@ device_map = {"transformer.wte": 0, "transformer.h.0": 1, "transformer.h.1": 2}
 | `packing` | Packs short examples together | `packing = True` | If dataset has many short examples, improves efficiency |
 | `device_map` | Controls GPU usage | `device_map="auto"` | Distributes model across GPUs automatically |
 
-Would you like to see **how `packing` affects batch processing speed** with a toy example? 🚀
 
