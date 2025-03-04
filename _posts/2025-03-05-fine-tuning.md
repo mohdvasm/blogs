@@ -1,8 +1,9 @@
 ---
-title: Understanding Parameters To Fine-Tune Llama 2 with QLoRA
-date: 2025-03-05 00:30:00 +/-TTTT
+title: Fine Tuning
+date: 2025-03-05 00:30:00 +0530
 categories: [Generative AI, Fine-Tuning]
 tags: [generative ai]     # TAG names should always be lowercase
+author: mohdvasm
 ---
 
 ## Response:
